@@ -1,0 +1,246 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    min-width: 320px;
+    margin: 0;
+    background-image: url('https://abrakadabra.fun/uploads/posts/2021-12/1640105114_1-abrakadabra-fun-p-tri-kota-oboi-na-telefon-1.jpg');
+    display: flex;
+
+}
+
+a, p, h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes show-nav {
+    from {
+        margin-left: -230px;
+    }
+    to {
+        margin-left: 0;
+    }
+}
+
+@keyframes hide-nav {
+    from {
+        margin-left: 0;
+    }
+    to {
+        margin-left: -230px;
+    }
+}
+
+.nav-show {
+    animation-name: show-nav;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.nav-hide {
+    animation-name: hide-nav;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.nav {
+    margin-left: -230px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgba(255, 151, 53, 0.479);
+    width: 300px;
+    backdrop-filter: blur(3px);
+    justify-content: center;
+    transition: all;  
+    margin-right: auto;  
+
+}
+
+
+
+.nav__btn {
+    padding: 15px 30px;
+    max-width: 200px;
+    cursor: pointer;
+    background-color: orange;
+    text-align: left;
+    color: aliceblue;
+    font-weight: 600;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    line-height: 35px;
+    border-radius: 0 15px 0 15px;
+    text-align: center;
+}
+
+.nav__btn:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+.nav__item {
+    margin-bottom: 20px;
+}
+
+.nav__list {
+    margin-left: 30px;
+}
+
+.show__nav {
+    height: 100%;
+    position: absolute;
+    width: 70px;
+    background-color: rgb(248, 112, 0);
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+@keyframes show-nav-icon {
+    from {
+        width: 20px;
+        opacity: 80%;
+    } 25% {
+        width: 30px;
+        opacity: 60%;
+    }
+     50% {
+        width: 40px;
+        opacity: 40%;
+    } 75% {
+        width: 50px;
+        opacity: 20%;
+    } to {
+        width: 60px;
+        opacity: 10%;
+    }
+}
+
+.show__nav__icon {
+    animation-name: show-nav-icon;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    fill: rgb(145, 255, 0);
+}
+
+.show__nav__icon-back {
+    transform: rotate(180deg);
+    margin-left: auto;
+    animation-name: show-nav-icon;
+    animation-duration: 0.8s;
+    animation-iteration-count: infinite;
+    fill: rgb(145, 255, 0);
+}
+
+.container {
+    max-width: 1400px;
+    height: 100vh;
+    background-color: rgba(240, 248, 255, 0.39);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px;
+    overflow-y: auto;
+}
+
+.card {
+    width: 300px;
+    height: 300px;
+    border: 1px solid rebeccapurple;
+    margin-bottom: 30px;
+    background-color: rgb(121, 246, 255);
+    border-radius: 15px 0 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    margin-right: 20px;
+}
+
+.card:nth-child(4) {
+    margin-right: 0;
+}
+
+.name {
+    margin-bottom: 20px;
+}
+
+.photo {
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 10px 10px rgb(172, 21, 21);
+    background-color: rgb(192, 101, 101);
+}
+
+/*===================LIKE-ICON=====================*/
+
+.like {
+    width: 70px;
+    position: absolute;
+    top: -15px;
+    right: -5px;
+    fill: rgb(255, 0, 0);
+    cursor: pointer;
+}
+
+.card:last-child {
+    margin-right: 0;
+}
+
+.liked {
+    width: 70px;
+    position: absolute;
+    top: -15px;
+    right: -5px;
+    fill: rgb(255, 0, 0);
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/*=================RAITING===============*/
+
+.raitng {
+    display: flex;
+    align-items: center;
+}
+
+.raiting__icon {
+    width: 15px;
+    margin-right: 3px;
+}
+
+.raiting__icon:last-child {
+    margin-right: 0;
+}
+.raiting__desc {
+    font-size: 15px;
+    font-weight: 700;
+    margin-right: 20px;
+    opacity: 0.5;
+}
