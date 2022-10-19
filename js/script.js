@@ -55,7 +55,7 @@
 
 
 
-    fetch('http://sb-cats.herokuapp.com/api/2/teamon1989/show')
+    fetch('https://sb-cats.herokuapp.com/api/2/teamon1989/show')
         .then(resp => resp.json())
         .then(data => {
             renderingCards(data.data, CONTAINER)
