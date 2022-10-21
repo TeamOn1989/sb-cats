@@ -11,7 +11,21 @@
             let photo = document.createElement('div');
             photo.classList.add('photo');
             photo.style.backgroundImage = `url('${element.img_link}')`
-            
+
+            photo.addEventListener('click', function() {
+                let name = element.name
+                let descr = element.description
+                let photoopup = element.img_link
+                let raitingin = element.rate
+                console.log(raitingin)
+                console.log(element.img_link)
+                fetch('https://sb-cats.herokuapp.com/api/2/teamon1989/show')
+                    .then(resp => resp.json())
+                    .then(data => {
+                    
+                        createPopupDescription(name, descr, photoopup, raitingin, document.body)                       
+                    })                
+            })            
 
             let name = document.createElement('h2');
             name.textContent = element.name
@@ -53,13 +67,83 @@
     }
 
 
+    function createPopupDescription(name, descr, photo, raiting, cont = document.body) {
+        let popupWrapper = document.createElement('div');
+        popupWrapper.classList.add('popup-wrapper');
 
+        let popup = document.createElement('article');
+        popup.classList.add('popup');
+
+        let popupContent = document.createElement('div');
+        popupContent.classList.add('popup__content');
+
+        let popupPhoto = document.createElement('div');
+        popupPhoto.classList.add('popup__photo');
+        popupPhoto.style.backgroundImage = `url('${photo}')`;
+
+        let popupDescription = document.createElement('div');
+        popupDescription.classList.add('popup__desc__wrapper');
+
+        let popupName = document.createElement('div');
+        popupName.classList.add('popup__name');
+        popupName.textContent = name
+
+        let popupText = document.createElement('p');
+        popupText.classList.add('popup__decr__text');
+        popupText.textContent = descr
+
+        let popupAge = document.createElement('p');
+        popupAge.classList.add('popup__age');
+
+        popupDescription.append(popupName, popupText, popupAge);
+        popupContent.append(popupPhoto, popupDescription);
+
+
+        let popupRaitingWrapper = document.createElement('div')
+        popupRaitingWrapper.classList.add('popup__raiting__wrapper')
+        let popupRating = document.createElement('p');
+
+        popupRating.classList.add('popup__rate');
+        popupRating.textContent = 'Рейтинг:'
+        popupRaitingWrapper.append(popupRating)
+        for (let i = 0; i < raiting; i++) {
+            let popupRatingIcon = document.createElement('span');
+            popupRatingIcon.classList.add('popup__rate__icon')
+            popupRatingIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><path d="M256 352C293.2 352 319.2 334.5 334.4 318.1C343.3 308.4 358.5 307.7 368.3 316.7C378 325.7 378.6 340.9 369.6 350.6C347.7 374.5 309.7 400 256 400C202.3 400 164.3 374.5 142.4 350.6C133.4 340.9 133.1 325.7 143.7 316.7C153.5 307.7 168.7 308.4 177.6 318.1C192.8 334.5 218.8 352 256 352zM208.4 208C208.4 225.7 194 240 176.4 240C158.7 240 144.4 225.7 144.4 208C144.4 190.3 158.7 176 176.4 176C194 176 208.4 190.3 208.4 208zM304.4 208C304.4 190.3 318.7 176 336.4 176C354 176 368.4 190.3 368.4 208C368.4 225.7 354 240 336.4 240C318.7 240 304.4 225.7 304.4 208zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"/></svg>'
+            console.log('star')
+            popupRaitingWrapper.append(popupRatingIcon)
+        }
+        
+    
+
+        let popupBtnWrapper = document.createElement('div');
+        popupBtnWrapper.classList.add('popup__btn__wrapper');
+
+        let popupBtnClose = document.createElement('button');
+        let popupBtnChange = document.createElement('button');
+        popupBtnChange.classList.add('popup__btn');
+        popupBtnChange.textContent = 'Изменить'        
+        popupBtnClose.classList.add('popup__btn');
+        popupBtnClose.textContent = 'Закрыть'
+        popupBtnClose.addEventListener('click', function() {
+            document.body.removeChild(popupWrapper)
+        })
+        popupWrapper.addEventListener('click', function() {
+            document.body.removeChild(popupWrapper)
+        })
+
+        popupBtnWrapper.append(popupBtnClose, popupBtnChange);
+
+        popup.append(popupContent, popupRaitingWrapper, popupBtnWrapper)
+        popupWrapper.append(popup)
+        cont.append(popupWrapper)
+    }
+    
 
     fetch('https://sb-cats.herokuapp.com/api/2/teamon1989/show')
         .then(resp => resp.json())
         .then(data => {
-            renderingCards(data.data, CONTAINER)
-            console.log(data.data)
+            renderingCards(data.data, CONTAINER);                      
         })
         
     

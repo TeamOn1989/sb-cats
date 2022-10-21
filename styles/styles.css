@@ -75,9 +75,9 @@ ul, ol {
 
 
 .nav__btn {
-    padding: 15px 30px;
-    max-width: 200px;
+    padding: 15px auto 15px 2px;
     cursor: pointer;
+    width: 150px;
     background-color: orange;
     text-align: left;
     color: aliceblue;
@@ -87,6 +87,7 @@ ul, ol {
     line-height: 35px;
     border-radius: 0 15px 0 15px;
     text-align: center;
+    border: none;
 }
 
 .nav__btn:not(:last-child) {
@@ -98,7 +99,8 @@ ul, ol {
 }
 
 .nav__list {
-    margin-left: 30px;
+    margin-left: 10px;
+    width: 230px;
 }
 
 .show__nav {
@@ -193,6 +195,13 @@ ul, ol {
     margin-bottom: 30px;
     box-shadow: 0 0 10px 10px rgb(172, 21, 21);
     background-color: rgb(192, 101, 101);
+    cursor: pointer;
+    transition: all ease 0.2s;
+}
+
+.photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 10px rgb(248, 67, 67);
 }
 
 /*===================LIKE-ICON=====================*/
@@ -243,4 +252,106 @@ ul, ol {
     font-weight: 700;
     margin-right: 20px;
     opacity: 0.5;
+}
+
+/*========================POPUP=======================*/
+
+.popup-wrapper {
+    position: fixed;
+    background-color: rgba(255, 118, 6, 0.651);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.popup {
+    max-width: 600px;
+
+    background-color: aliceblue;
+    display: flex;
+    border-radius: 5px;  
+    flex-direction: column;
+    padding: 20px;
+}
+
+.popup__btn {
+    background-color: rgb(252, 202, 128);
+    padding: 15px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-right: 30px;
+    cursor: pointer;
+    transition: all ease;
+}
+
+.popup__btn:hover {
+    box-shadow: 0 0 5px 3px green;
+    transform: scale(1.1);
+}
+
+.popup__btn__wrapper {
+    align-self: center;
+}
+
+.popup__btn:last-child {
+    margin-right: 0;
+}
+
+.popup__photo {
+    background-size: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 10px rgb(17, 149, 167);
+    width: 150px;
+    height: 150px;
+    background-color: rgb(22, 195, 218);
+    margin-right: 20px;
+
+}
+
+.popup__content {
+    display: flex;
+}
+
+.popup__desc__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+.popup__age {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.popup__decr__text {
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.popup__name {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.popup__rate {
+    font-size: 20px;
+    margin-right: 30px;
+}
+
+.popup__rate__icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.popup__raiting__wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
