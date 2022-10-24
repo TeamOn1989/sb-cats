@@ -2,7 +2,39 @@
     const CONTAINER = document.getElementById('cats-container');
     CONTAINER.classList.add('container');
     const SHOW_NAV = document.querySelector('.show__nav');
+    const ADD_CAT = "https://sb-cats.herokuapp.com/api/2/teamon1989/add";
+    const SHOW_CAT = "https://sb-cats.herokuapp.com/api/2/teamon1989/show";
+    const UPDATE_CAT = "https://sb-cats.herokuapp.com/api/2/teamon1989/update/";
+    const DELETE_CAT = "https://sb-cats.herokuapp.com/api/2/teamon1989/delete/";
+    const ADD_CAT_BTN = document.getElementById('add');
+    ADD_CAT_BTN.addEventListener('click', createCat);
 
+    const ARRAY_iDS = fetch("https://sb-cats.herokuapp.com/api/2/teamon1989/ids")
+        .then(res => res.json())
+        .then(data => 
+            data.data);
+
+    function createId(arr) {
+        let max = 10000;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].id > max) {
+                max = arr[i].id
+            }
+        }
+        return max + 1000
+    }
+
+    const ADD__CAT__MENU = document.querySelector('#menu_add')
+    ADD__CAT__MENU.addEventListener('click', function() {
+        let catForm = document.querySelector('.add__cat__wrapper')
+        catForm.classList.add('active')
+    })
+
+    const CHANCEL_ADD_CAT = document.getElementById('chancel').addEventListener('click', function() {
+        let catForm = document.querySelector('.add__cat__wrapper')
+        catForm.classList.remove('active')
+    })
+    /*==================Рендеринг картоек==================*//*==========================================================================================*/
     function renderingCards(arr, cont) {
         arr.forEach(element => {
             let card = document.createElement('div');
@@ -19,10 +51,9 @@
                 let raitingin = element.rate
                 console.log(raitingin)
                 console.log(element.img_link)
-                fetch('https://sb-cats.herokuapp.com/api/2/teamon1989/show')
+                fetch(SHOW_CAT)
                     .then(resp => resp.json())
-                    .then(data => {
-                    
+                    .then(data => {                    
                         createPopupDescription(name, descr, photoopup, raitingin, document.body)                       
                     })                
             })            
@@ -66,7 +97,7 @@
         });
     }
 
-
+//=================================================================Рендеринг попапа========================================================================
     function createPopupDescription(name, descr, photo, raiting, cont = document.body) {
         let popupWrapper = document.createElement('div');
         popupWrapper.classList.add('popup-wrapper');
@@ -140,17 +171,14 @@
     }
     
 
-    fetch('https://sb-cats.herokuapp.com/api/2/teamon1989/show')
+    fetch(SHOW_CAT)
         .then(resp => resp.json())
         .then(data => {
             renderingCards(data.data, CONTAINER);                      
         })
         
     
-    
-    
-    
-    //================МЕНЮ===============
+    //================МЕНЮ====================================================================================================================================
     SHOW_NAV.addEventListener('click', function() {
         let  nav = document.querySelector('.nav');
         let navIcon = document.querySelector('.nav svg')
@@ -172,20 +200,49 @@
         }
     })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //========================================================ADD-CAT========================================================================================
+    function addCat(body) {
+        return fetch(ADD_CAT, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+    }
+    
+    //==============================================================CREATE-NEW-CAT===========================================================
+    function createCat(e) {
+        e.preventDefault()
+        let nameInput = document.getElementById('name');
+        let check = document.getElementById('checkbox');
+        let ratingInput = document.querySelector('#raiting');
+        let ageInput = document.getElementById('age');
+        let descrInput = document.getElementById('descr');
+        let imgInput = document.getElementById('img')
+        let imgLink;
+        if (imgInput.value.endsWith('jpg') || imgInput.value.endsWith('png')) {
+            imgLink = imgInput.value
+        } else {
+            alert('Введите корректный URL картинки')
+            return
+        }
+        
+        let card = {
+            "id": createId(ARRAY_iDS),
+            "name": nameInput.value,
+            "favourite": check.checked,
+            "rate": ratingInput.value,
+            "age": ageInput.value,
+            "description": descrInput.value,
+            "img_link": imgLink
+        }
+        
+        addCat(card)
+    }
     
     
+
+
 })();

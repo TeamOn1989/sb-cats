@@ -12,7 +12,7 @@
     <nav class="nav">
         <ul class="nav__list">
             <li class="nav__item">
-                <button class="nav__btn">
+                <button class="nav__btn" id="menu_add">
                     Добавить персонажа
                 </button>
             </li>
@@ -39,38 +39,38 @@
         </div>        
     </nav>
     <div id="cats-container"></div>
-    <!-- <div class="popup-wrapper">
-        <div class="popup">
-            <article class="popup__content">
-                <div class="popup__photo">
-
-                </div>
-                <div class="popup__desc__wrapper">
-                    <h2 class="popup__name">
-                        Коржик
-                    </h2>
-                    <p class="popup__decr__text">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint labore illo quaerat aperiam soluta nemo mollitia vel commodi impedit quod earum, atque eveniet sed alias dolorum sapiente reiciendis nisi doloribus?
-                    </p>
-                    <p class="popup__age">
-                        Возраст: 5 лет
-                    </p>
-                </div>                
-            </article>
-            <p class="popup__rate">
-                рйшщывоаил
-                <span>@</span>
-            </p>
-            <div class="popup__btn__wrapper">
-                
-                <button class="popup__btn">
-                    Закрыть
+    <div class="add__cat__wrapper hidden">
+        <h2 class="add__cat__heading">
+            Добавить кота:
+        </h2>
+        <form class="add__cat">
+            <label for="name" class="labels">Введите имя</label>
+            <input type="text" id="name" class="add__cat__name">
+            <div class="add__cat__like_wrapper">
+                <input type="checkbox" id="checkbox" class="add__cat__like">
+                <label for="checkbox" class="checkbox__label"></label>
+                <span class="check__box__flag">Лобимчик?</span>
+            </div>
+            <label for="raiting" class="labels">Рейтинг</label>
+            <input type="number" id="raiting" class="add__cat__rate">
+            <label for="age" class="labels">Возраст кота/кошки</label>
+            <input type="text" id="age" class="add__cat__age">
+            <label for="descr" class="labels">Опишите Вашего котика</label>
+            <textarea id="descr" class="add__cat__descr" rows="5">
+            </textarea>
+            <label for="img" class="labels">Ссылка на картинку</label>
+            <input type="text" id="img" class="add__cat__img__link">
+            <div class="add__btn__wrapper">
+                <button type="submit" class="btn" id="add">
+                    Добавить
                 </button>
-                <button class="popup__btn">
-                     Редfктировать
+                <button class="btn" id="chancel">
+                    Отмена
                 </button>
             </div>
-        </div>
-    </div> -->
+            
+        </form>
+    </div>
+    
 </body>
 </html>
